@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.alert import Alert
 import time
 import pyperclip
 
@@ -30,6 +32,14 @@ def setUrl(driver, url):
     driver.get(url)
     time.sleep(2)
 
+def clickObject(driver, obj_str):
+    button = driver.find_element_by_css_selector(obj_str)
+    button.click()
+
+def selectObject(driver, obj_str, targetText):
+    select = Select(driver.find_element_by_css_selector(obj_str))
+    select.select_by_visible_text(targetText)
+
 def login(driver, id, pw):
     driver.get("https://exp.ck.ac.kr/login.do")
     startLogin = driver.find_element_by_css_selector("div[class='loginField']")
@@ -41,22 +51,9 @@ def login(driver, id, pw):
     driver.implicitly_wait(1)
     driver.find_element_by_css_selector("button[class='btnBasic btn_login w100']").click()
 
-def insertForm(driver, index, value):
-    form_raw = driver.find_element_by_css_selector("div[qid='" + str(index) + "']")
-    type = form_raw.get_attribute("class")
-    driver.execute_script("arguments[0].scrollIntoView();", form_raw)
-
-    if type == 'formItemPh text':
-        answer = form_raw.find_element_by_id('answer')
-        answer.send_keys(value)
-    elif type == 'formItemPh singleChoice vertical':
-        form_raw.find_element_by_css_selector("div[value='" + str(value) + "']").find_element_by_class_name(
-            "radio").click()
-    elif type == 'formItemPh paragraph':
-        answer = form_raw.find_element_by_css_selector("textarea[name='answer']")
-        answer.send_keys(value)
-
-    print("[" + str(index) + "] type = " + type + ", value = " + str(value))
+def insertForm(driver, obj_str, value):
+    answer = driver.find_element_by_css_selector(obj_str)
+    answer.send_keys(value)
 
 
 def submit(driver):
@@ -68,6 +65,13 @@ def submit(driver):
 
 def isSubmit(driver):
     return driver.find_element_by_class_name('finishMessage').get_attribute("textContent")
+
+def acceptAlert(driver):
+    try:
+        alert = Alert(driver)
+        alert.accept()
+    except:
+        print("No Alert!")
 
 
 def close(driver):
