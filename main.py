@@ -2,12 +2,13 @@ import os
 import random
 import time
 from datetime import datetime
+from pytz import timezone
 
 import web_checker
 
 
 def IsWeekend():
-    d = datetime.now()
+    d = datetime.now(timezone('Asia/Seoul'))
     if d.weekday() > 4:
         return True
     return False
@@ -54,7 +55,7 @@ if __name__ == '__main__':
     time.sleep(2)
     web_checker.setUrl(driver, strings[0].strip())
 
-    now = datetime.now()
+    now = datetime.now(timezone('Asia/Seoul'))
     now_str = now.strftime("%Y%m%d")
     isWeekend = IsWeekend()
 
