@@ -18,7 +18,7 @@ def GetReport():
     if IsWeekend():
         return "오늘은 쉬었습니다."
 
-    reportList = os.listdir("report_data")
+    reportList = sorted(os.listdir("report_data"))
 
     result = ""
 
