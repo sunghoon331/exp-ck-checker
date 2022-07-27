@@ -13,10 +13,10 @@ def getDriver(url):
     options.add_argument("start-maximized")
     options.add_argument("lang=ko_KR")
     # TODO: 실제 사용 시 주석 해제 필요함
-    # options.add_argument('headless')
-    # options.add_argument('window-size=1920x1080')
-    # options.add_argument("disable-gpu")
-    # options.add_argument("--no-sandbox")
+    options.add_argument('headless')
+    options.add_argument('window-size=1920x1080')
+    options.add_argument("disable-gpu")
+    options.add_argument("--no-sandbox")
 
     # chrome driver
     driver = webdriver.Chrome('chromedriver', chrome_options=options)
