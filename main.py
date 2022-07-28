@@ -69,10 +69,15 @@ if __name__ == '__main__':
     print(result_str)
     web_checker.insertForm(driver, "textarea[id='tody_rslt']", result_str)
     time.sleep(1)
-    web_checker.clickObject(driver, "button[id='btnSave']")
-    time.sleep(3)
-    web_checker.acceptAlert(driver)
-    time.sleep(3)
+
+    isAlertCompleted = False
+
+    while not isAlertCompleted:
+        web_checker.clickObject(driver, "button[id='btnSave']")
+        time.sleep(2)
+        isAlertCompleted = web_checker.acceptAlert(driver)
+        time.sleep(3)
+
     web_checker.acceptAlert(driver)
 
     time.sleep(1)

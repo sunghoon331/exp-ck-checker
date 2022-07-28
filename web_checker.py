@@ -28,17 +28,21 @@ def getDriver(url):
 
     return driver
 
+
 def setUrl(driver, url):
     driver.get(url)
     time.sleep(2)
+
 
 def clickObject(driver, obj_str):
     button = driver.find_element_by_css_selector(obj_str)
     button.click()
 
+
 def selectObject(driver, obj_str, targetText):
     select = Select(driver.find_element_by_css_selector(obj_str))
     select.select_by_visible_text(targetText)
+
 
 def login(driver, id, pw):
     driver.get("https://exp.ck.ac.kr/login.do")
@@ -50,6 +54,7 @@ def login(driver, id, pw):
     driver.find_element_by_css_selector("input[id='user_pw']").send_keys(pw)
     driver.implicitly_wait(1)
     driver.find_element_by_css_selector("button[class='btnBasic btn_login w100']").click()
+
 
 def insertForm(driver, obj_str, value):
     answer = driver.find_element_by_css_selector(obj_str)
@@ -67,12 +72,15 @@ def submit(driver):
 def isSubmit(driver):
     return driver.find_element_by_class_name('finishMessage').get_attribute("textContent")
 
+
 def acceptAlert(driver):
     try:
         alert = Alert(driver)
         alert.accept()
+        return True
     except:
         print("No Alert!")
+        return False
 
 
 def close(driver):
