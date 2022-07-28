@@ -53,6 +53,7 @@ def login(driver, id, pw):
 
 def insertForm(driver, obj_str, value):
     answer = driver.find_element_by_css_selector(obj_str)
+    answer.clear()
     answer.send_keys(value)
 
 
