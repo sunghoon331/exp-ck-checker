@@ -70,12 +70,12 @@ if __name__ == '__main__':
     web_checker.insertForm(driver, "textarea[id='tody_rslt']", result_str)
     time.sleep(1)
     web_checker.clickObject(driver, "button[id='btnSave']")
-    time.sleep(1)
+    time.sleep(3)
     web_checker.acceptAlert(driver)
-    time.sleep(1)
+    time.sleep(3)
     web_checker.acceptAlert(driver)
 
-    time.sleep(3)
+    time.sleep(1)
 
     web_checker.close(driver)
 
