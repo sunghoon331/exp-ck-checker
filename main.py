@@ -64,11 +64,18 @@ if __name__ == '__main__':
     web_checker.clickObject(driver, "td[id='" + now_str + "']")
     time.sleep(1)
     web_checker.selectObject(driver, "select[id='pims_stat']", "휴무" if isWeekend else "출석")
-    time.sleep(1)
-    result_str = GetReport()
-    print(result_str)
-    web_checker.insertForm(driver, "textarea[id='tody_rslt']", result_str)
-    time.sleep(1)
+
+    result_str = ""
+    str_length = 0
+
+    while str_length < 200:
+        time.sleep(1)
+        result_str = GetReport()
+        print(result_str)
+        web_checker.insertForm(driver, "textarea[id='tody_rslt']", result_str)
+        time.sleep(1)
+        str_length = int(web_checker.getObject(driver, "span[id='tody_rslt_count']").text)
+        print("[총 " + str(str_length) + "자]")
 
     isAlertCompleted = False
 

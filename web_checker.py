@@ -82,6 +82,9 @@ def acceptAlert(driver):
         print("No Alert!")
         return False
 
+def getObject(driver, obj_str):
+    return driver.find_element_by_css_selector(obj_str)
+
 
 def close(driver):
     driver.close()
