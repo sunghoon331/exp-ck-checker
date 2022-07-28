@@ -30,7 +30,7 @@ def GetReport():
 def AppendReportStr(path, fileName):
     file = open(path + fileName, "r", encoding='utf8')
     fileNameSplit = fileName.split(".")
-    result = "[" + fileNameSplit[1] + "]\n"
+    result = fileNameSplit[1] + "\n"
     strings = file.readlines()
     file.close()
 
