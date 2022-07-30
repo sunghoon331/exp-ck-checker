@@ -45,7 +45,7 @@ if __name__ == '__main__':
     print("exp ck checker")
     
     if IsWeekend():
-        return
+        sys.exit()
 
     file = open("info.txt", "r", encoding='utf8')
     strings = file.readlines()
