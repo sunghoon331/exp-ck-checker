@@ -1,6 +1,7 @@
 import os
 import random
 import time
+import sys
 from datetime import datetime
 from pytz import timezone
 
@@ -45,7 +46,7 @@ if __name__ == '__main__':
     print("exp ck checker")
     
     if IsWeekend():
-        sys.exit()
+        sys.exit(0)
 
     file = open("info.txt", "r", encoding='utf8')
     strings = file.readlines()
