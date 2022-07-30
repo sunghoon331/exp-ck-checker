@@ -43,6 +43,9 @@ def AppendReportStr(path, fileName):
 
 if __name__ == '__main__':
     print("exp ck checker")
+    
+    if IsWeekend():
+        return
 
     file = open("info.txt", "r", encoding='utf8')
     strings = file.readlines()
