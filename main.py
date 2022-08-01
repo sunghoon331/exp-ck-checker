@@ -62,12 +62,10 @@ if __name__ == '__main__':
     now = datetime.now(timezone('Asia/Seoul'))
     now_str = now.strftime("%Y%m%d")
     isWeekend = IsWeekend()
-    
-    month = now.month()
 
     driver.implicitly_wait(1)
     time.sleep(1)
-    web_checker.selectObject(driver, "select[id='cal_month']", str(month) + "월")
+    web_checker.selectObject(driver, "select[id='cal_month']", str(now.month) + "월")
     time.sleep(2)
     web_checker.clickObject(driver, "td[id='" + now_str + "']")
     time.sleep(1)
